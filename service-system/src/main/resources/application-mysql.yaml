@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/guigu-auth
+    username: root
+    password: "001020"
+    driver-class-name: com.mysql.cj.jdbc.Driver
