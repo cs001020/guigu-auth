@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.chen.model.po.SysRole;
+import com.chen.model.vo.AssginRoleVo;
 import com.chen.model.vo.SysRoleQueryVo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 系统角色服务
@@ -24,4 +26,19 @@ public interface SysRoleService extends IService<SysRole> {
      * @return {@link IPage}<{@link SysRole}>
      */
     IPage<SysRole> selectPage(Page<SysRole> pageParam, SysRoleQueryVo sysRoleQueryVo);
+
+    /**
+     * 被用户id角色
+     *
+     * @param userId 用户id
+     * @return {@link Map}<{@link String}, {@link Object}>
+     */
+    Map<String, Object> getRolesByUserId(String userId);
+
+    /**
+     * 做分配
+     *
+     * @param assginRoleVo 签证官assgin作用
+     */
+    void doAssign(AssginRoleVo assginRoleVo);
 }

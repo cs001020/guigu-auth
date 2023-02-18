@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chen.common.result.Result;
 import com.chen.model.po.SysRole;
+import com.chen.model.vo.AssginRoleVo;
 import com.chen.model.vo.SysRoleQueryVo;
 import com.chen.system.service.SysRoleService;
 import io.swagger.annotations.Api;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 系统角色控制器
@@ -89,5 +91,19 @@ public class SysRoleController {
             return Result.ok();
         }
         return Result.fail();
+    }
+
+    @ApiOperation("获取用户角色")
+    @GetMapping("/toAssign/{userId}")
+    public Result toAssign(@PathVariable String userId){
+        Map<String,Object> map= sysRoleService.getRolesByUserId(userId);
+        return Result.ok(map);
+    }
+
+    @ApiOperation("用户分配角色")
+    @PostMapping("doAssign")
+    public Result doAssign(@RequestBody AssginRoleVo assginRoleVo) {
+        sysRoleService.doAssign(assginRoleVo);
+        return Result.ok();
     }
 }
